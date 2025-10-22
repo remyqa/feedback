@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Addons, Skins for Minecraft (CraftHub)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('craft-hub-image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .content-overlay {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="content-overlay w-full max-w-md p-8 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Addons, Skins for Minecraft (CraftHub)</h1>
+        <h2 class="text-xl font-semibold mb-4 text-center text-gray-600">Sign in to continue to Feedback</h2>
+        <form id="feedbackForm" action="https://formspree.io/f/mnqwpqda" method="POST" class="space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
+            </div>
+            <div>
+                <label for="feedback" class="block text-sm font-medium text-gray-700">Your Feedback</label>
+                <textarea id="feedback" name="feedback" rows="4" class="mt-1 p-2 w-full border rounded-md focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
+            </div>
+            <!-- CAPTCHA Integration (hCaptcha as an example) -->
+            <div class="h-captcha" data-sitekey="your-hcaptcha-site-key"></div>
+            <input type="hidden" name="_cc" value="remyappsstudio@gmail.com">
+            <input type="hidden" name="_subject" value="Feedback from CraftHub">
+            <input type="hidden" name="_next" value="https://<your-username>.github.io/<repository-name>/thanks.html">
+            <button type="submit" class="w-full bg-indigo-600 text-white p-2 rounded-md hover:bg-indigo-700 transition">Submit Feedback</button>
+        </form>
+        <p id="formMessage" class="mt-4 text-center text-sm text-gray-600"></p>
+        <p class="mt-2 text-center text-sm text-gray-500">Not your computer? Use Private Browsing to sign in. <a href="#" class="text-indigo-600">Learn more</a></p>
+    </div>
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            const message = document.getElementById('formMessage');
+            if (!hCaptcha || !hCaptcha.getResponse()) {
+                e.preventDefault();
+                message.textContent = 'Please complete the CAPTCHA.';
+                return;
+            }
+            message.textContent = 'Submitting...';
+        });
+    </script>
+</body>
+</html>
