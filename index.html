@@ -37,25 +37,15 @@
                 <label for="feedback" class="block text-sm font-medium text-gray-700">Your Feedback</label>
                 <textarea id="feedback" name="feedback" rows="4" class="mt-1 p-2 w-full border rounded-md focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
             </div>
-            <!-- CAPTCHA Integration (hCaptcha as an example) -->
-            <div class="h-captcha" data-sitekey="your-hcaptcha-site-key"></div>
             <input type="hidden" name="_cc" value="remyappsstudio@gmail.com">
             <input type="hidden" name="_subject" value="Feedback from CraftHub">
-            <input type="hidden" name="_next" value="https://<your-username>.github.io/<repository-name>/thanks.html">
             <button type="submit" class="w-full bg-indigo-600 text-white p-2 rounded-md hover:bg-indigo-700 transition">Submit Feedback</button>
         </form>
         <p id="formMessage" class="mt-4 text-center text-sm text-gray-600"></p>
-        <p class="mt-2 text-center text-sm text-gray-500">Not your computer? Use Private Browsing to sign in. <a href="#" class="text-indigo-600">Learn more</a></p>
     </div>
-    <script src="https://hcaptcha.com/1/api.js" async defer></script>
     <script>
         document.getElementById('feedbackForm').addEventListener('submit', function(e) {
             const message = document.getElementById('formMessage');
-            if (!hCaptcha || !hCaptcha.getResponse()) {
-                e.preventDefault();
-                message.textContent = 'Please complete the CAPTCHA.';
-                return;
-            }
             message.textContent = 'Submitting...';
         });
     </script>
